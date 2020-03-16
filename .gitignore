@@ -3,3 +3,4 @@ Pipfile.lock
 .env
 cloud_sql_proxy
 env_variables.yaml
+node_modules/
