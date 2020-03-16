@@ -1,0 +1,3 @@
+[submodule "card-stash-frontend"]
+	path = card-stash-frontend
+	url = git@github.com:ericanaglik/card-stash-frontend.git
