@@ -1,4 +1,4 @@
-from mysite.wsgi import application
+from card_organizer.wsgi import application
 
 
-app = pplication
+app = application
