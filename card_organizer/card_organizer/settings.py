@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'card',
-    'corsheaders'
+    'token_auth.apps.TokenAuthConfig',
 ]
 
 MIDDLEWARE = [
@@ -161,7 +162,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
@@ -177,3 +178,7 @@ CORS_ORIGIN_WHITELIST = (
     'https://localhost:3000',
     'https://card-digitalizer.appspot.com'
 )
+
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'card_organizer.utils.my_jwt_response_handler'
+}
