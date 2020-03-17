@@ -7,5 +7,6 @@ class Card(models.Model):
     type_2 = models.CharField(max_length=20, null=True, blank=True)
 
     price = models.FloatField()
+    year_released = models.DateTimeField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

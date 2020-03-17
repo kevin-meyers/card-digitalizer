@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from rest_framework import permissions, status
 from rest_framework.decorators import api_view
@@ -18,20 +18,26 @@ def current_user(request):
     return Response(serializer.data)
 
 
-class UserList(APIView):
+class CreateUser(APIView):
     """
-    Create a new user. It's called 'UserList' because normally we'd have a get
-    method here too, for retrieving a list of all User objects.
+    Create a new user.
     """
 
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        serializer.save()
+        tokens = serializer.data['token']
+        username = serializer.data['username']
 
-        print('send help')
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        response = Response(username, status=status.HTTP_201_CREATED)
+        response.set_cookie('jwt_token', tokens['access'])
+        response.set_cookie('refresh_token', tokens['refresh'])
+
+
+        return response
+
