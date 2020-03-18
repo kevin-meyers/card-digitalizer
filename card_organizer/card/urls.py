@@ -1,7 +1,7 @@
 from django.urls import path
 
-from card.views import CardListCreate
+from card.views import CardList
 
 urlpatterns = [
-    path('api/card/', CardListCreate.as_view()),
+    path('api/card/', CardList.as_view()),
 ]
