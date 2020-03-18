@@ -26,7 +26,7 @@ def current_user(request):
     return Response(serializer.data)
 
 
-class CreateUser(APIView):
+class SignUp(APIView):
     """
     Create a new user.
     """

@@ -1,7 +1,7 @@
 from django.urls import path
 from token_auth.views import (
     current_user,
-    CreateUser,
+    SignUp,
     Login,
     RefreshToken,
 )
@@ -9,7 +9,7 @@ from token_auth.views import (
 
 urlpatterns = [
     path('current_user/', current_user),
-    path('create_user/', CreateUser.as_view()),
-    path('token/', Login.as_view()),
+    path('signup/', SignUp.as_view()),
+    path('login/', Login.as_view()),
     path('token/refresh/', RefreshToken.as_view()),
 ]
