@@ -38,7 +38,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'card-digitalizer.appspot.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+   # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
@@ -54,9 +54,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # Note that this needs to be placed above CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    #'django.contrib.sessions.middleware.SessionMiddleware',
+    'card_organizer.middleware.MySessionMiddleware',
+ #   'django.contrib.auth.middleware.AuthenticationMiddleware',
+ #   'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -172,10 +173,11 @@ if os.getenv('PRODUCTION'):
     )
 
 CORS_ORIGIN_WHITELIST = (
-    'https://localhost:3000',
+    'http://localhost:3000',
     'https://card-digitalizer.appspot.com'
 )
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'card_organizer.utils.my_jwt_response_handler'
 }
+CORS_ALLOW_CREDENTIALS = True

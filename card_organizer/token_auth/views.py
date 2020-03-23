@@ -45,6 +45,11 @@ class SignUp(APIView):
         response.set_cookie('jwt_token', tokens['access'])
         response.set_cookie('refresh_token', tokens['refresh'])
 
+        # For the love of god dont this for long
+        #TODO: Help please lol, I am doing this because of upcoming deadline
+        # And I want to show off features without there being all this pain
+        response.set_cookie('username', username)
+
 
         return response
 
@@ -63,6 +68,9 @@ class Login(TokenObtainPairView):
         response = Response(request.data['username'], status=status.HTTP_200_OK)
         response.set_cookie('jwt_token', tokens['access'])
         response.set_cookie('refresh_token', tokens['refresh'])
+
+        #TODO GET RID OF
+        response.set_cookie('username', request.data['username'])
 
         return response
 
