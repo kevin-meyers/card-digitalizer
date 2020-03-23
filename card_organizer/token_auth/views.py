@@ -20,10 +20,9 @@ def current_user(request):
     """
     Determine the current user by their token, and return their data
     """
+    token = request.COOKIES.get('jwt_token')
 
-    serializer = UserSerializer(request.user)
-
-    return Response(serializer.data)
+    return Response(status=status.HTTP_200_OK)
 
 
 class SignUp(APIView):
@@ -68,7 +67,7 @@ class Login(TokenObtainPairView):
         return response
 
 class RefreshToken(TokenRefreshView):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         token = request.COOKIES.get('refresh_token')
         serializer = self.get_serializer(data={'refresh': token})
         try:
@@ -80,4 +79,3 @@ class RefreshToken(TokenRefreshView):
         response.set_cookie('jwt_token', serializer.validated_data['access'])
 
         return response
-

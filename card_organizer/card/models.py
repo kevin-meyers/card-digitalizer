@@ -29,7 +29,7 @@ class Pokemon(models.Model):
     series = models.CharField(max_length=100)
     rarity = models.CharField(max_length=100)
 
-    year_released = models.DateTimeField()
+    year_released = models.DateTimeField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
