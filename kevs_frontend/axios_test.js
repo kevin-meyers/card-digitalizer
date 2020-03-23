@@ -1,7 +1,8 @@
 var axios = require('axios')
 
+/*
 const options = {
-  url: 'http://127.0.0.1:8000/api/token/',
+  url: 'http://127.0.0.1:8000/api/login/',
   method: 'POST',
   data: {
     'username': 'kevin',
@@ -13,4 +14,15 @@ axios(options)
   .then(response => {
     console.log(response.data);
   });
+  */
+axios.post('http://127.0.0.1:8000/api/login/', {
+  username: 'erica',
+  password: 'baby2605'
+  }
+)
+.then((response) => {
+  console.log(response);
+}, (error) => {
+  console.log(error);
+});
 

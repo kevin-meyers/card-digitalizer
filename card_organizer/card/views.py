@@ -54,8 +54,9 @@ class PokemonCreate(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         username = self.request.COOKIES.get('username')
+        user = User.objects.get(username=username)
 
-        request.data['user'] = username
+        request.data['user'] = user.id
 
         return super().create(request, *args, **kwargs)
 
