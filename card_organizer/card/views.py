@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
-from card.models import Card, Pokemon
-from card.serializers import CardSerializer, PokemonSerializer
+from card.models import Pokemon
+from card.serializers import PokemonSerializer
 from rest_framework import generics, authentication, permissions
 
 from rest_framework_simplejwt.backends import TokenBackend
@@ -36,7 +36,7 @@ class myAuth(authentication.TokenAuthentication):
         return self.authenticate_credentials(token)
 
 
-class CardList(generics.ListAPIView):
+class PokemonList(generics.ListAPIView):
     serializer_class = PokemonSerializer
     authentication_classes = []  # [myAuth]
     permission_classes = [permissions.AllowAny]
